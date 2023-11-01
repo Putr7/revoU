@@ -9,36 +9,62 @@
 <body>
     <table>
         <tr>
-            <th colspan="4"><input type="text" name="display"></th>
+            <th colspan="4"><input type="text" id="display" value="12345"></th>
         </tr>
         <tr>
-            <td colspan="2"><button>AC</button></td>
-            <td><button>C</button></td>
+            <td colspan="2"><button onclick="clearDisplay()">AC</button></td>
+            <td><button onclick="removeLastDigit()">C</button></td>
             <td><button>*</button></td>
         </tr>
         <tr>
-            <td><button>7</button></td>
-            <td><button>8</button></td>
-            <td><button>9</button></td>
-            <td><button>/</button></td>
+            <td><button onclick="addToDisplay('7')">7</button></td>
+                <td><button onclick="addToDisplay('8')">8</button></td>
+                <td><button onclick="addToDisplay('9')">9</button></td>
+                <td><button onclick="addToDisplay('/')">/</button></td>
         </tr>
         <tr>
-            <td><button>4</button></td>
-            <td><button>5</button></td>
-            <td><button>6</button></td>
-            <td><button>+</button></td>
+            <td><button onclick="addToDisplay('4')">4</button></td>
+                <td><button onclick="addToDisplay('5')">5</button></td>
+                <td><button onclick="addToDisplay('6')">6</button></td>
+                <td><button onclick="addToDisplay('+')">+</button></td>
         </tr>
         <tr>
-            <td><button>1</button></td>
-            <td><button>2</button></td>
-            <td><button>3</button></td>
-            <td><button>-</button></td>
+            <td><button onclick="addToDisplay('1')">1</button></td>
+                <td><button onclick="addToDisplay('2')">2</button></td>
+                <td><button onclick="addToDisplay('3')">3</button></td>
+                <td><button onclick="addToDisplay('-')">-</button></td>
         </tr>
-        <tr><td><button>+-</button></td>
-            <td><button>0</button></td>
-            <td><button>.</button></td>
-            <td><button>=</button></td>
+        <tr>
+            <td><button onclick="addToDisplay('+-')">+-</button></td>
+            <td><button onclick="addToDisplay('0')">0</button></td>
+            <td><button onclick="addToDisplay('.')">.</button></td>
+            <td><button onclick="calculate('=')">=</button></td>
         </tr>
 
     </table>
-</body>
+<script>
+    function addToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }      
+    function calculate() {
+        try {
+            document.getElementById('display').value = eval(document.getElementById('display').value);
+        } catch (error) {
+            document.getElementById('display').value = 'Error';
+        }
+    }
+</script>
+<script>
+    function removeLastDigit() {
+        const display = document.getElementById('display');
+        const currentValue = display.value;
+
+        if (currentValue.length > 0) {
+            display.value = currentValue.slice(0, -1); // Menghapus karakter terakhir
+        }
+    }
+</script>
